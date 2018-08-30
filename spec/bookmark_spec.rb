@@ -4,10 +4,10 @@ describe Bookmark do
   describe '.all' do
     it 'returns all bookmarks' do
       connection = PG.connect(dbname: 'bookmark_manager_test')
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.google.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.destroyallsoftware.com');")
+      connection.exec("INSERT INTO bookmarks (url, title) VALUES ('http://www.google.com', 'google');")
+      connection.exec("INSERT INTO bookmarks (url, title) VALUES ('http://www.destroyallsoftware.com', 'destroy');")
 
-      bookmarks = Bookmark.all
+      bookmarks = Bookmark.all.map { |bookmark| bookmark.url }
 
       expect(bookmarks).to include(("http://www.google.com"))
       expect(bookmarks).to include(("http://www.destroyallsoftware.com"))
