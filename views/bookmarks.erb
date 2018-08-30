@@ -1,5 +1,9 @@
+<%= flash[:notice] %>
+
 <ul>
   <% @bookmarks.each do |bookmark| %>
     <li><%= bookmark %></li>
   <% end %>
 </ul>
+<br>
+<a href='/'>go back </a>
